@@ -5,6 +5,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import nested from 'postcss-nested';
 import webpack from 'webpack';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 import config from './config';
 
@@ -49,10 +50,6 @@ export default {
     ]
   },
   plugins: [
-    new AssetsPlugin({
-      filename: 'assets.json',
-      path: 'build'
-    }),
     new ExtractTextPlugin('[name].[contenthash:7].css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
