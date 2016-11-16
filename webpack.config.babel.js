@@ -5,7 +5,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import nested from 'postcss-nested';
 import webpack from 'webpack';
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 import config from './config';
 
