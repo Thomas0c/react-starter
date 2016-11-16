@@ -7,12 +7,17 @@ const Html = ({assets, content, head, initialState}) => (
       <meta content='width=device-width, initial-scale=1' name='viewport' />
       {head.meta.toComponent()}
       {head.title.toComponent()}
-      <link href={assets.main.css} rel='stylesheet' />
+      {Object.keys(assets.styles).map((style, i) =>
+        <link href={assets.styles[style]} key={i} media="screen, projection"
+        rel="stylesheet" type="text/css"/>
+      )}
     </head>
     <body>
       <div dangerouslySetInnerHTML={{__html: content}} id='root' />
       <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}`}} />
-      <script src={assets.main.js} />
+      {Object.keys(assets.javascript).map((script, i) =>
+        <script src={assets.javascript[script]} key={i}/>
+      )}
     </body>
   </html>
 );

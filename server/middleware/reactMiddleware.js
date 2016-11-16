@@ -11,7 +11,7 @@ import configureStore from '../../client/configureStore';
 import routes from '../../client/routes';
 
 const renderApp = (renderProps) => {
-  const assets = require('../../build/assets.json'); // eslint-disable-line global-require, import/newline-after-import
+  const assets = webpackIsomorphicTools.assets(); // eslint-disable-line global-require, import/newline-after-import
   const store = configureStore();
   const initialState = store.getState();
   const content = renderToString(
@@ -23,7 +23,7 @@ const renderApp = (renderProps) => {
 
   return renderToStaticMarkup(
     <Html
-      assets={assets}
+      assets={assets} // eslint-disable-line
       content={content}
       head={head}
       initialState={initialState}

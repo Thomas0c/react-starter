@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 
 const PageHeading = ({text}) => (
-  <h1>{text}</h1>
+  <h1>{text} test hello 123</h1>
 );
 
 PageHeading.propTypes = {

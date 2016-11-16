@@ -6,4 +6,12 @@ require('css-modules-require-hook')({
   mode: 'local',
   rootDir: './client'
 });
-require('./server');
+
+const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
+const projectBase = require('path').resolve(__dirname, '../');
+
+global.webpackIsomorphicTools
+= new WebpackIsomorphicTools(require('../webpack-isomorphic-tools-configuration')) // eslint-disable-line
+.server(projectBase, () => {
+  require('./server'); // eslint-disable-line
+});

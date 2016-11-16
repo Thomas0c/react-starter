@@ -10,15 +10,19 @@ import config from './config';
 
 const isProduction = config.env === 'production';
 
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackIsomorphicTools
+= new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration')); // eslint-disable-line
+
 export default {
   entry: isProduction ? [
-    './index.js'
+    './client/index.js'
   ] : [
     'webpack-hot-middleware/client',
     'react-hot-loader/patch',
-    './index.js'
+    './client/index.js'
   ],
-  context: path.resolve(__dirname, './client'),
+  context: path.resolve(__dirname, './'),
   output: {
     filename: '[name].[hash:7].js',
     path: path.resolve(__dirname, './build'),
@@ -30,23 +34,17 @@ export default {
         test: /\.css$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]-[hash:base64:4]!postcss')
-      },
-      {
+      }, {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
           cacheDirectory: !isProduction
         }
-      },
-      {
-        test: /\.(eot|gif|jpe?g|otf|png|svg|webp|woff|woff2?|ttf)$/,
+      }, {
+        test: webpackIsomorphicTools.regular_expression('images'),
         exclude: /node_modules/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: '[name].[hash:7].[ext]'
-        }
+        loader: 'url-loader?limit=10240'
       }
     ]
   },
@@ -69,9 +67,11 @@ export default {
         output: {
           comments: false
         }
-      })
+      }),
+      webpackIsomorphicTools
     ] : [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      webpackIsomorphicTools.development()
     ]
   ],
   postcss: [

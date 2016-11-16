@@ -14,6 +14,11 @@ const server = express();
 if (!isProduction) {
   server.use(webpackMiddleware);
   server.use(webpackHotMiddleware);
+
+  server.use((req, res, next) => {
+    webpackIsomorphicTools.refresh();
+    next();
+  });
 }
 
 server.use(compression());
