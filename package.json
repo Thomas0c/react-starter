@@ -10,6 +10,7 @@
     "start": "node server",
     "start-dev-server": "babel-node ./server/webpackDevServer.js",
     "prepare-dev": "nodemon server -w server",
+    "test": "true",
     "start-dev": "npm-run-all --parallel start-dev-server prepare-dev"
   },
   "devDependencies": {
