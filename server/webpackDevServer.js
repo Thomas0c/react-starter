@@ -1,7 +1,5 @@
 import express from 'express';
-
 import config from '../config';
-import {webpackMiddleware, webpackHotMiddleware} from './middleware/webpackMiddleware';
 
 const isProduction = config.env === 'production';
 const server = express();

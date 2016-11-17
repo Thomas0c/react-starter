@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-const PageHeading = ({text}) => (
-  <h1>{text} test hello 123</h1>
+const PageHeading = ({ text }) => (
+  <h1>{text}</h1>
 );
 
 PageHeading.propTypes = {

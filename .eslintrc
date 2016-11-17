@@ -1,6 +1,18 @@
 {
-  "extends": "richardkall/react",
+  "extends": "airbnb",
   "rules": {
-    "sort-keys": 0
+    "no-unused-vars": 1,
+    "no-else-return": 0,
+    "comma-dangle": 0,
+    "new-cap": 1,
+    "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": 0,
+  },
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "shallow": true
   }
 }

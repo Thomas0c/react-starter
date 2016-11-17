@@ -1,9 +1,9 @@
-import React, {PropTypes} from 'react';
-import {Provider} from 'react-redux';
+import React, { PropTypes } from 'react';
+import { Provider } from 'react-redux';
 
 import routes from '../../routes';
 
-const Root = ({store}) => (
+const Root = ({ store }) => (
   <Provider store={store}>
     {routes}
   </Provider>
